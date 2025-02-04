@@ -98,7 +98,7 @@ export default function LoginPage() {
           <div className="flex flex-col space-y-4">
             <button
               type="submit"
-              className="cursor-pointer text-sm w-full bg-[#09122C] hover:bg-[#09122C] text-white py-2 px-4 rounded-md font-medium transition-colors duration-200"
+              className="cursor-pointer text-sm w-full bg-[#010101] hover:bg-[#010103] text-white py-2 px-4 rounded-md font-medium transition-colors duration-200"
             >
               Next
             </button>
