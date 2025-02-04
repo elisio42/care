@@ -43,8 +43,8 @@ export default function LoginPage() {
       <div className="w-full grid grid-cols-2 max-w-[700px] pb-10 ">
         <div className="flex flex-col">
           <h1 className="text-4xl font-medium mb-4">Sign in</h1>
-          <div className="text-sm">
-            <span className="text-gray-600 ">
+          <div className="">
+            <span className="text-gray-600 text-sm ">
               Not your computer? Use Guest mode.
             </span>
           </div>
@@ -86,10 +86,10 @@ export default function LoginPage() {
             )}
           </div>
 
-          <div className="flex items-center justify-between text-sm mb-8">
+          <div className="text-right mb-8">
             <Link
               to="/"
-              className="text-zinc-600 hover:text-zinc-800 font-medium"
+              className="text-zinc-600 hover:text-zinc-800 font-medium text-[12px]"
             >
               Forgot password?
             </Link>
