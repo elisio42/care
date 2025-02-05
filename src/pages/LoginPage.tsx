@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; 
 import { z } from "zod";
+import { useAuth } from "@/contextApi/AuthContext";
 import logo from "/vite.svg";
 
 export default function LoginPage() {
@@ -8,6 +9,9 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate(); 
+
+  const { login, error } = useAuth(); 
 
   const loginSchema = z.object({
     email: z.string().email("Invalid email format"),
@@ -18,14 +22,19 @@ export default function LoginPage() {
       .regex(/[a-z]/, "Password must contain at least one lowercase letter"),
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setEmailError("");
+    setPasswordError("");
+
     const validationResult = loginSchema.safeParse({ email, password });
 
     if (validationResult.success) {
-      alert("Login successful!");
-      setEmailError("");
-      setPasswordError("");
+      const loginResult = await login(email, password);
+      if (!loginResult) {
+        navigate("/dashboard"); // Login successful, navigate to dashboard
+      }
     } else {
       const errors = validationResult.error.errors;
       setEmailError(errors.find((e) => e.path[0] === "email")?.message || "");
@@ -50,6 +59,7 @@ export default function LoginPage() {
           </div>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4 mb-18">
+          {error && <p className="text-sm text-red-500">{error}</p>} {/* Exibe o erro */}
           <div>
             <div className="relative">
               <input
