@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import {  EyeSlash, Eye } from "iconsax-react";
+import { EyeSlash, Eye } from "iconsax-react";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-
 import Button from "../ui/button/Button";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
-  
+  const { theme } = useTheme();
+
   return (
     <div className="flex flex-col flex-1">
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
@@ -76,16 +77,22 @@ export default function SignInForm() {
                   <div className="relative">
                     <Input
                       type={showPassword ? "text" : "password"}
-                      placeholder="Introduza sua palavra-passe"
+                      placeholder="Palavra-passe"
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
                     >
                       {showPassword ? (
-                        <Eye className="fill-gray-500 dark:fill-gray-400 size-5" />
+                        <Eye
+                          size={25}
+                          color={theme === "dark" ? "#fff" : "#000"}
+                        />
                       ) : (
-                        <EyeSlash className="fill-gray-500 dark:fill-gray-400 size-5" />
+                        <EyeSlash
+                          size={25}
+                          color={theme === "dark" ? "#fff" : "#000"}
+                        />
                       )}
                     </span>
                   </div>
@@ -110,7 +117,7 @@ export default function SignInForm() {
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
                 Não tenho uma conta? {""}
                 <Link
-                  to="/signup"
+                  to="/sign-up"
                   className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
                 >
                   Inscrever-se
