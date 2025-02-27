@@ -120,7 +120,7 @@ export default function SignInForm() {
                   to="/sign-up"
                   className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
                 >
-                  Inscrever-se
+                  Criar conta
                 </Link>
               </p>
             </div>

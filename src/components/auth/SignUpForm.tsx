@@ -3,12 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { useTheme } from "../../context/ThemeContext";
 import Label from "../form/Label";
-import Checkbox from "../form/input/Checkbox";
 import Input from "../form/input/InputField";
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
   const { theme } = useTheme();
 
   return (
@@ -128,13 +126,13 @@ export default function SignUpForm() {
                     >
                       {showPassword ? (
                         <Eye
-                          size={24}
-                          color={theme == "dark" ? "#fff" : "#000"}
+                          size={20}
+                          color={theme === "dark" ? "#fff" : "#000"}
                         />
                       ) : (
                         <EyeSlash
-                          size={24}
-                          color={theme == "dark" ? "#fff" : "#000"}
+                          size={20}
+                          color={theme === "dark" ? "#fff" : "#000"}
                         />
                       )}
                     </span>
