@@ -16,7 +16,7 @@ export default function SignUpForm() {
           to="/entrar"
           className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
         >
-          <ArrowLeft size={24} color={theme === "dark" ? "#fff" : "#000"} />
+          <ArrowLeft size={24} color={theme === "dark" ? "#fff" : "#101828"} />
           Voltar
         </Link>
       </div>

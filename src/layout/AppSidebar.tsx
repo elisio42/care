@@ -30,7 +30,7 @@ const AppSidebar: React.FC = () => {
   return (
     <aside
       className={`fixed mt-16 md:pt-24 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
-        ${isExpanded || isMobileOpen ? "w-[210px]" : isHovered ? "w-[210px]" : "w-[90px]"}
+        ${isExpanded || isMobileOpen ? "w-[210px]" :  "w-[90px]"}
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0`}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
@@ -38,7 +38,8 @@ const AppSidebar: React.FC = () => {
     >
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="mb-6">
-          <h2 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"}`}>Menu</h2>
+          <img src="/images/logo/care.svg" alt="logo" className="w-8 mb-4 ml-2 hidden md:block" />
+          <h2 className="mb-4 text-xs uppercase flex ml-2 leading-[20px] text-gray-400 pt-8 md:pt-0">Menu</h2>
           <ul className="flex flex-col gap-4">
             {navItems.map((nav) => (
               <li key={nav.name}>
