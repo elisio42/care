@@ -4,6 +4,7 @@ import SignUp from "./pages/AuthPages/SignUp";
 import NotFound from "./pages/OtherPage/NotFound";
 import AppLayout from "./layout/AppLayout";
 import Home from "./pages/Dashboard/Home";
+import UserProfiles from "./pages/UserProfiles";
 
 export default function App() {
   return (
@@ -13,6 +14,8 @@ export default function App() {
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
             <Route index path="/" element={<Home />} />
+            <Route path='/relatorio' element={<>Invoce</>} />
+            <Route path='/perfil' element={<UserProfiles />} />
           </Route>
 
           {/* Auth Layout */}
