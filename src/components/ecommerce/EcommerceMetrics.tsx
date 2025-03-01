@@ -10,11 +10,7 @@ export default function EcommerceMetrics() {
       {/* <!-- Metric Item Start --> */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
         <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-          <User
-            size={24}
-            color={incolor}
-            className="text-gray-800 size-6 dark:text-white/90"
-          />
+          <User size={24} color={incolor} variant="Bold" />
         </div>
 
         <div className="flex items-end justify-between mt-5">
@@ -37,11 +33,7 @@ export default function EcommerceMetrics() {
       {/* <!-- Metric Item Start --> */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
         <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-          <MoneySend
-            size={20}
-            color={incolor}
-            className="text-gray-800 size-6 dark:text-white/90"
-          />
+          <MoneySend size={24} color={incolor} variant="Bold" />
         </div>
         <div className="flex items-end justify-between mt-5">
           <div>
@@ -62,11 +54,7 @@ export default function EcommerceMetrics() {
 
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
         <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-          <Direct
-            size={14}
-            color={incolor}
-            className="text-gray-800 size-6 dark:text-white/90"
-          />
+          <Direct size={24} color={incolor} variant="Bold" />
         </div>
 
         <div className="flex items-end justify-between mt-5">
