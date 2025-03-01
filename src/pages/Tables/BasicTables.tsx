@@ -6,7 +6,7 @@ export default function BasicTables() {
   return (
     <>
       <PageBreadcrumb pageTitle="Pacientes" />
-      <div className="space-y-6">
+      <div className="space-y-4">
         <ComponentCard title="Tabela de pacientes">
           <BasicTableOne />
         </ComponentCard>
