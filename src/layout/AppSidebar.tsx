@@ -6,6 +6,7 @@ import {
   MoneyRecive,
   ChartSquare,
   ArchiveTick,
+
 } from "iconsax-react";
 
 import { useSidebar } from "../context/SidebarContext";
@@ -64,7 +65,7 @@ const AppSidebar: React.FC = () => {
         className="w-8 -mt-18 mb-14  ml-2 hidden md:block "
       />
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
-        <nav className="mb-6">
+        <nav className="mb-6 relative">
           <h2 className="mb-4 text-xs uppercase flex ml-2 leading-[20px] text-gray-400 pt-8 md:pt-0">
             Menu
           </h2>
