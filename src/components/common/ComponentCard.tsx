@@ -1,8 +1,11 @@
+import Button from "../ui/button/Button";
+
 interface ComponentCardProps {
   title: string;
   children: React.ReactNode;
   className?: string; // Additional custom classes for styling
-  desc?: string; // Description text
+  desc?: string;
+  btn?: React.ReactNode | string; // Description text
 }
 
 const ComponentCard: React.FC<ComponentCardProps> = ({
@@ -10,13 +13,14 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
   children,
   className = "",
   desc = "",
+  btn = "",
 }) => {
   return (
     <div
       className={`rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] ${className}`}
     >
       {/* Card Header */}
-      <div className="px-6 py-5">
+      <div className="flex justify-between items-center  px-6 py-5">
         <h3 className="text-base font-medium text-gray-800 dark:text-white/90">
           {title}
         </h3>
@@ -25,6 +29,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
             {desc}
           </p>
         )}
+        <Button>{btn}</Button>
       </div>
 
       {/* Card Body */}
