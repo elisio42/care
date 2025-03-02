@@ -27,18 +27,18 @@ const AppSidebar: React.FC = () => {
     },
     {
       icon: <MoneyRecive size={16} color={iconColor} variant="Bold" />,
-      name: "Finanças",
-      path: "/financas",
+      name: "Pacientes",
+      path: "pacientes",
     },
     {
       icon: <ArchiveTick size={16} color={iconColor} variant="Bold" />,
-      name: "Agendamento",
-      path: "/agendamento",
+      name: "Consultas",
+      path: "/consultas",
     },
     {
       icon: <Calendar1 size={16} color={iconColor} variant="Bold" />,
-      name: "Calendário",
-      path: "/calendario",
+      name: "Funcionarios",
+      path: "/funcionarios",
     },
     {
       icon: <ClipboardText size={16} color={iconColor} variant="Bold" />,

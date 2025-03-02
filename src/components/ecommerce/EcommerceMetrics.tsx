@@ -38,16 +38,16 @@ export default function EcommerceMetrics() {
         <div className="flex items-end justify-between mt-5">
           <div>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              Receitas
+              Numero de Funcionarios
             </span>
             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              5,359
+              5
             </h4>
           </div>
 
           <Badge color="error">
             <ArrowDown size={14} color={incolor} />
-            9.05%
+            1.05%
           </Badge>
         </div>
       </div>
@@ -60,10 +60,10 @@ export default function EcommerceMetrics() {
         <div className="flex items-end justify-between mt-5">
           <div>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              Produtos em stock
+              Consultas agendadas hoje
             </span>
             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              32
+              27
             </h4>
           </div>
           <Badge color="success">
