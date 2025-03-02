@@ -138,7 +138,7 @@ export default function UserMetaCard() {
                 fill=""
               />
             </svg>
-            Editar perfil
+            Editar 
           </button>
         </div>
       </div>
