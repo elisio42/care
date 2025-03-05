@@ -16,10 +16,10 @@ export default function EcommerceMetrics() {
         <div className="flex items-end justify-between mt-5">
           <div>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              Total de pacientes
+              Total de consultas hoje
             </span>
             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              321
+              97
             </h4>
           </div>
           <Badge color="success">
@@ -38,10 +38,10 @@ export default function EcommerceMetrics() {
         <div className="flex items-end justify-between mt-5">
           <div>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              Numero de Funcionarios
+               Pacientes em espera
             </span>
             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              5
+              65
             </h4>
           </div>
 
@@ -60,18 +60,13 @@ export default function EcommerceMetrics() {
         <div className="flex items-end justify-between mt-5">
           <div>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-<<<<<<< HEAD
-              Consultas agendadas hoje
+
+              Pacientes Atendidos 
             </span>
             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
               27
-=======
-              Consultas realizadas hoje
-            </span>
-            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              7
->>>>>>> 05dda4f (test)
             </h4>
+        
           </div>
           <Badge color="success">
             <ArrowUp size={14} color={incolor} />

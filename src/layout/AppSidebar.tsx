@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router";
+import SidebarWidget from "./SidebarWidget"
 import {
   Calendar1,
   ClipboardText,
@@ -25,25 +26,21 @@ const AppSidebar: React.FC = () => {
       name: "Dashboard",
       path: "/",
     },
-    {
-      icon: <MoneyRecive size={16} color={iconColor} variant="Bold" />,
-      name: "Pacientes",
-      path: "pacientes",
-    },
+
     {
       icon: <ArchiveTick size={16} color={iconColor} variant="Bold" />,
-      name: "Consultas",
-      path: "/consultas",
+      name: "Agenda",
+      path: "/agendar-consulta",
     },
     {
       icon: <Calendar1 size={16} color={iconColor} variant="Bold" />,
-      name: "Funcionarios",
-      path: "/funcionarios",
+      name: "Pacientes",
+      path: "/pacientes",
     },
     {
       icon: <ClipboardText size={16} color={iconColor} variant="Bold" />,
-      name: "Estoque",
-      path: "/estoque",
+      name: "Check-in",
+      path: "/check-in",
     },
     {
       icon: <Clipboard size={16} color={iconColor} variant="Bold" />,
@@ -89,6 +86,7 @@ const AppSidebar: React.FC = () => {
             ))}
           </ul>
         </nav>
+        <SidebarWidget />
       </div>
     </aside>
   );
