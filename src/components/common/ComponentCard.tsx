@@ -29,7 +29,11 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
             {desc}
           </p>
         )}
+<<<<<<< HEAD
         {btn && <Button>{btn}</Button>}
+=======
+        {btn && ( <Button>{ btn }</Button> )}
+>>>>>>> 5eee4e1 (update)
       </div>
 
       {/* Card Body */}
