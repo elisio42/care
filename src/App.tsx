@@ -7,6 +7,7 @@ import Home from "./pages/Dashboard/Home";
 import UserProfiles from "./pages/UserProfiles";
 import StockPage from "./pages/Stock/StockPage";
 import FormElements from "./pages/Forms/FormElements";
+import Invoce from "./pages/Invoce/Invoce";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/stock" element={<StockPage />} />
             <Route path="/consulta" element={<FormElements />} />
             <Route path="/check-in" element={<>CHECK IN</>} />
+            <Route path="/relatorio" element={<Invoce />} />
           </Route>
 
           {/* Auth Layout */}
