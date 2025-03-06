@@ -1,21 +1,20 @@
 import ComponentCard from "../../common/ComponentCard";
 import Label from "../Label";
 import Input from "../input/InputField";
-import { EnvelopeIcon } from "../../../icons";
+import { Message } from "iconsax-react";
 import PhoneInput from "../group-input/PhoneInput";
+import { useTheme } from "../../../context/ThemeContext";
 
 export default function InputGroup() {
+  const { theme } = useTheme()
   const countries = [
-    { code: "US", label: "+1" },
-    { code: "GB", label: "+44" },
-    { code: "CA", label: "+1" },
-    { code: "AU", label: "+61" },
+    { code: "Ang", label: "+244" },
   ];
   const handlePhoneNumberChange = (phoneNumber: string) => {
     console.log("Updated phone number:", phoneNumber);
   };
   return (
-    <ComponentCard title="Input Group">
+    <ComponentCard title="Contacto" desc="Informacoes de contacto">
       <div className="space-y-6">
         <div>
           <Label>Email</Label>
@@ -26,25 +25,16 @@ export default function InputGroup() {
               className="pl-[62px]"
             />
             <span className="absolute left-0 top-1/2 -translate-y-1/2 border-r border-gray-200 px-3.5 py-3 text-gray-500 dark:border-gray-800 dark:text-gray-400">
-              <EnvelopeIcon className="size-6" />
+              <Message size={20} color={theme === "dark" ? "#fff" : "#102818" } variant="Bold"/>
             </span>
           </div>
         </div>
         <div>
-          <Label>Phone</Label>
+          <Label>Telefone</Label>
           <PhoneInput
             selectPosition="start"
             countries={countries}
-            placeholder="+1 (555) 000-0000"
-            onChange={handlePhoneNumberChange}
-          />
-        </div>{" "}
-        <div>
-          <Label>Phone</Label>
-          <PhoneInput
-            selectPosition="end"
-            countries={countries}
-            placeholder="+1 (555) 000-0000"
+            placeholder="+244 999 999 999"
             onChange={handlePhoneNumberChange}
           />
         </div>
