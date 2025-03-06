@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import SidebarWidget from "./SidebarWidget"
+import SidebarWidget from "./SidebarWidget";
 import {
   Calendar1,
   ClipboardText,
@@ -7,14 +7,13 @@ import {
   MoneyRecive,
   ChartSquare,
   ArchiveTick,
-
 } from "iconsax-react";
 
 import { useSidebar } from "../context/SidebarContext";
 import { useTheme } from "../context/ThemeContext";
 
 const AppSidebar: React.FC = () => {
-  const { isExpanded, isMobileOpen, isHovered } = useSidebar();
+  const { isExpanded, isMobileOpen } = useSidebar();
   const { theme } = useTheme();
   const location = useLocation();
 
@@ -29,8 +28,8 @@ const AppSidebar: React.FC = () => {
 
     {
       icon: <ArchiveTick size={16} color={iconColor} variant="Bold" />,
-      name: "Agenda",
-      path: "/agendar-consulta",
+      name: "Consulta",
+      path: "/consulta",
     },
     {
       icon: <Calendar1 size={16} color={iconColor} variant="Bold" />,
@@ -52,7 +51,7 @@ const AppSidebar: React.FC = () => {
   return (
     <aside
       className={`fixed mt-16 md:pt-24 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
-        ${isExpanded || isMobileOpen ? "w-[210px]" : "w-[90px]"}
+        ${isExpanded || isMobileOpen ? "w-[240px]" : "w-[90px]"}
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0`}
     >
@@ -78,7 +77,7 @@ const AppSidebar: React.FC = () => {
                   }`}
                 >
                   <span className="menu-item-icon-size">{nav.icon}</span>
-                  {(isExpanded || isHovered || isMobileOpen) && (
+                  {(isExpanded || isMobileOpen) && (
                     <span className="menu-item-text">{nav.name}</span>
                   )}
                 </Link>
@@ -86,7 +85,7 @@ const AppSidebar: React.FC = () => {
             ))}
           </ul>
         </nav>
-        <SidebarWidget />
+        {isExpanded || isMobileOpen ? <SidebarWidget /> : null}
       </div>
     </aside>
   );

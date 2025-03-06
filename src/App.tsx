@@ -18,6 +18,7 @@ export default function App() {
             <Route path='/relatorio' element={<>Invoce</>} />
             <Route path='/perfil' element={<UserProfiles />} />
             <Route path="/stock" element={<StockPage />} />
+            <Route path="/consulta" element={<>Consulta</>} />
           </Route>
 
           {/* Auth Layout */}
