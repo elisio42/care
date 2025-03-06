@@ -20,6 +20,7 @@ export default function App() {
             <Route path='/perfil' element={<UserProfiles />} />
             <Route path="/stock" element={<StockPage />} />
             <Route path="/consulta" element={<FormElements />} />
+            <Route path="/check-in" element={<>CHECK IN</>} />
           </Route>
 
           {/* Auth Layout */}
