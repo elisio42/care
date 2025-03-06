@@ -6,6 +6,7 @@ import AppLayout from "./layout/AppLayout";
 import Home from "./pages/Dashboard/Home";
 import UserProfiles from "./pages/UserProfiles";
 import StockPage from "./pages/Stock/StockPage";
+import FormElements from "./pages/Forms/FormElements";
 
 export default function App() {
   return (
@@ -18,7 +19,7 @@ export default function App() {
             <Route path='/relatorio' element={<>Invoce</>} />
             <Route path='/perfil' element={<UserProfiles />} />
             <Route path="/stock" element={<StockPage />} />
-            <Route path="/consulta" element={<>Consulta</>} />
+            <Route path="/consulta" element={<FormElements />} />
           </Route>
 
           {/* Auth Layout */}
