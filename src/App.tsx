@@ -17,8 +17,7 @@ export default function App() {
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
             <Route index path="/" element={<Home />} />
-            <Route path='/relatorio' element={<>Invoce</>} />
-            <Route path='/perfil' element={<UserProfiles />} />
+            <Route path="/perfil" element={<UserProfiles />} />
             <Route path="/stock" element={<StockPage />} />
             <Route path="/consulta" element={<FormElements />} />
             <Route path="/check-in" element={<>CHECK IN</>} />
