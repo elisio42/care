@@ -1,10 +1,15 @@
+import ComponentCard from "../../components/common/ComponentCard";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
+import Button from "../../components/ui/button/Button";
+import InvoceCard from "./Header";
+
+
 
 export default function Invoce() {
   return (
     <>
       <PageBreadcrumb pageTitle="Relatório" />
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
+      <div className="rounded-2xl mb-6 border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="flex">
           <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
             <img src="/images/user/owner.jpg" alt="User" />
@@ -19,7 +24,12 @@ export default function Invoce() {
           </div>
         </div>
       </div>
-      
+      <ComponentCard title="Relatório" desc="ID: #658">
+        <InvoceCard />
+        <div className="flex justify-end border-t border-gray-200  pt-8 dark:border-gray-800">
+          <Button variant="primary">Enviar relatório</Button>
+        </div>
+      </ComponentCard>
     </>
   );
 }

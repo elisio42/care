@@ -4,9 +4,8 @@ import {
   Calendar1,
   ClipboardText,
   Clipboard,
-  MoneyRecive,
-  ChartSquare,
   ArchiveTick,
+  Home2,
 } from "iconsax-react";
 
 import { useSidebar } from "../context/SidebarContext";
@@ -21,7 +20,7 @@ const AppSidebar: React.FC = () => {
 
   const navItems = [
     {
-      icon: <ChartSquare size={16} color={iconColor} variant="Bold" />,
+      icon: <Home2 size={16} color={iconColor} variant="Bold" />,
       name: "Dashboard",
       path: "/",
     },

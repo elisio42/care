@@ -6,61 +6,41 @@ import {
   TableRow,
 } from "../../components/ui/table";
 
-import Badge from "../../components/ui/badge/Badge";
-
-interface Consulta {
+interface Relatorio {
   id: number;
-  paciente: {
-    imagem: string;
-    nome: string;
-    idade: string;
-  };
+  nome: string;
+  idade: string;
   servico: string;
   preco: string;
 }
 
-// Dados da tabela
-const consultas: Consulta[] = [
+// Dados do relatório
+const relatorios: Relatorio[] = [
   {
     id: 1,
-    paciente: {
-      imagem: "/images/user/user-08.jpg",
-      nome: "Mariana Silva",
-      idade: "28 anos",
-    },
+    nome: "Mariana Silva",
+    idade: "28 anos",
     servico: "Consulta de Rotina",
-
     preco: "R$ 250,00",
   },
   {
     id: 2,
-    paciente: {
-      imagem: "/images/user/user-04.jpg",
-      nome: "Carlos Mendes",
-      idade: "35 anos",
-    },
+    nome: "Carlos Mendes",
+    idade: "35 anos",
     servico: "Ortopedia",
-
     preco: "R$ 320,00",
   },
   {
     id: 3,
-    paciente: {
-      imagem: "/images/user/user-01.jpg",
-      nome: "Fernanda Lima",
-      idade: "42 anos",
-    },
+    nome: "Fernanda Lima",
+    idade: "42 anos",
     servico: "Cardiologia",
-
     preco: "R$ 400,00",
   },
   {
     id: 4,
-    paciente: {
-      imagem: "/images/user/user-03.jpg",
-      nome: "João Pereira",
-      idade: "50 anos",
-    },
+    nome: "João Pereira",
+    idade: "50 anos",
     servico: "Cardiologia",
     preco: "R$ 280,00",
   },
@@ -79,21 +59,21 @@ export default function TableTwo() {
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Paciente
+                  ID
                 </TableCell>
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Data
+                  Nome
                 </TableCell>
+
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
                   Serviço
                 </TableCell>
-
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
@@ -105,34 +85,33 @@ export default function TableTwo() {
 
             {/* Corpo da Tabela */}
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {consultas.map((consulta) => (
-                <TableRow key={consulta.id}>
+              {relatorios.map((relatorio) => (
+                <TableRow key={relatorio.id}>
                   <TableCell className="px-5 py-4 sm:px-6 text-start">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 overflow-hidden rounded-full">
-                        <img
-                          width={40}
-                          height={40}
-                          src={consulta.paciente.imagem}
-                          alt={consulta.paciente.nome}
-                        />
-                      </div>
-                      <div>
-                        <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                          {consulta.paciente.nome}
-                        </span>
-                        <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
-                          {consulta.paciente.idade}
-                        </span>
-                      </div>
+                    <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                      {relatorio.id}
+                    </span>
+                  </TableCell>
+                  <TableCell className="px-5 py-4 sm:px-6 text-start">
+                    <div>
+                      <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                        {relatorio.nome}
+                      </span>
+                      <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
+                        {relatorio.idade}
+                      </span>
                     </div>
                   </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                    {consulta.servico}
-                  </TableCell>
 
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {consulta.preco}
+                  <TableCell className="px-5 py-4 sm:px-6 text-start">
+                    <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                      {relatorio.servico}
+                    </span>
+                  </TableCell>
+                  <TableCell className="px-5 py-4 sm:px-6 text-start">
+                    <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                      {relatorio.preco}
+                    </span>
                   </TableCell>
                 </TableRow>
               ))}
