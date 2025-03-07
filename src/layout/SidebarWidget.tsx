@@ -1,11 +1,12 @@
+import { useSidebar } from "../context/SidebarContext";
 
 
 export default function SidebarWidget() {
-  
+  const { isMobileOpen } = useSidebar()
   return (
     <div
       className={`
-        mx-auto mb-4 w-full max-w-50 rounded-2xl bg-gray-200 px-4 py-5 text-center dark:bg-white/[0.03] absolute bottom-0`}
+        mx-auto mb-4 w-full max-w-50 rounded-2xl bg-gray-200 px-4 py-5 text-center dark:bg-white/[0.03] absolute ${isMobileOpen ? "bottom-18" : "bottom-0"}`}
     >
       <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
         #Care Dashboard

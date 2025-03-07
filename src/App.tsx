@@ -22,6 +22,7 @@ export default function App() {
             <Route path="/consulta" element={<FormElements />} />
             <Route path="/check-in" element={<>CHECK IN</>} />
             <Route path="/relatorio" element={<Invoce />} />
+            <Route path="/pacientes" element={<p>Pacientes</p>} />
           </Route>
 
           {/* Auth Layout */}
