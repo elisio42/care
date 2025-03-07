@@ -8,6 +8,7 @@ import UserProfiles from "./pages/UserProfiles";
 import StockPage from "./pages/Stock/StockPage";
 import FormElements from "./pages/Forms/FormElements";
 import Invoce from "./pages/Invoce/Invoce";
+import TablePacientes from "./pages/Pacientes/TablePacientes";
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
             <Route path="/consulta" element={<FormElements />} />
             <Route path="/check-in" element={<>CHECK IN</>} />
             <Route path="/relatorio" element={<Invoce />} />
-            <Route path="/pacientes" element={<p>Pacientes</p>} />
+            <Route path="/pacientes" element={<TablePacientes />} />
           </Route>
 
           {/* Auth Layout */}
