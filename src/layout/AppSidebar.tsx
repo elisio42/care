@@ -54,11 +54,13 @@ const AppSidebar: React.FC = () => {
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0`}
     >
-      <img
-        src="/images/logo/care.svg"
-        alt="logo"
-        className="w-8 -mt-18 mb-14  ml-2 hidden md:block "
-      />
+      <Link to={"/"}>
+        <img
+          src="/images/logo/care.svg"
+          alt="logo"
+          className="w-8 -mt-18 mb-14  ml-2 hidden md:block "
+        />
+      </Link>
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="mb-6 relative">
           <h2 className="mb-4 text-xs uppercase flex ml-2 leading-[20px] text-gray-400 pt-8 md:pt-0">
