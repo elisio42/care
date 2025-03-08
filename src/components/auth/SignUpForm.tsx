@@ -4,10 +4,31 @@ import { Link } from "react-router";
 import { useTheme } from "../../context/ThemeContext";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
+import { useAuth } from "../../context/UserContext";
+import { useNavigate } from "react-router";
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+    try {
+      await signUp(email, password);
+      setLoading(false);
+      navigate("/");
+    } catch (error) {
+      console.log("erro ao criar conta", error);
+    }
+  };
 
   return (
     <div className="flex flex-col flex-1 w-full overflow-y-auto lg:w-1/2 no-scrollbar">
@@ -20,6 +41,8 @@ export default function SignUpForm() {
           Voltar
         </Link>
       </div>
+
+      {error && <p className="text-error-700">{error}</p>}
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
@@ -108,6 +131,8 @@ export default function SignUpForm() {
                     id="email"
                     name="email"
                     placeholder="Seu email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 {/* <!-- Password --> */}
@@ -119,6 +144,8 @@ export default function SignUpForm() {
                     <Input
                       placeholder="Sua palavra-passe"
                       type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
@@ -141,8 +168,13 @@ export default function SignUpForm() {
 
                 {/* <!-- Button --> */}
                 <div>
-                  <button className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600">
-                    Criar conta
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    onClick={handleSubmit}
+                    className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                  >
+                    {loading ? "Carregando..." : "Criar conta"}
                   </button>
                 </div>
               </div>
