@@ -13,7 +13,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
   children,
   className = "",
   desc = "",
-  btn = '',
+  btn = "",
 }) => {
   return (
     <div
@@ -29,9 +29,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
             {desc}
           </p>
         )}
-
-        {btn && ( <Button>{ btn }</Button> )}
-
+        {btn && <Button>{btn}</Button>}
       </div>
 
       {/* Card Body */}
