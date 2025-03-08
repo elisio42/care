@@ -17,7 +17,7 @@ export default function CheckIn() {
       nome: "Ariana Grande",
       status: "Aguardando",
       horaChegada: "09:00",
-      imagem: "/images/user/user-02.jpg",
+      imagem: "/images/user/user-04.jpg",
       urgente: true,
     },
     {
@@ -30,29 +30,43 @@ export default function CheckIn() {
       nome: "Selena Gomez",
       status: "Aguardando",
       horaChegada: "09:30",
-      imagem: "/images/user/user-06.jpg",
+      imagem: "/images/user/user-09.jpg",
     },
     {
       nome: "The Weeknd",
       status: "Aguardando",
       horaChegada: "09:45",
       imagem: "/images/user/user-08.jpg",
+      urgente: true
     },
+    {
+        nome: "Petter Parker",
+        status: "Aguardando",
+        horaChegada: "01:05",
+        imagem: "/images/user/user-10.jpg",
+      },
+      {
+        nome: "Nick Minaj",
+        status: "Aguardando",
+        horaChegada: "00:05",
+        imagem: "/images/user/user-33.jpg",
+      
+      },
   ];
 
-  const handleOrdenarFilaDeAtendimento = (fila: filaDeAtendimentoType[]) : filaDeAtendimentoType[] => {
-    return fila.sort((a, b) => {
-        if(a.urgente && !b.urgente) {
-            return -1;
-        }
+  const handleOrdenarFilaDeAtendimento = (fila: filaDeAtendimentoType[]) => {
+    return [...fila].sort((a, b) => {
+      if (a.urgente && !b.urgente) {
+        return -1;
+      }
 
-        if(!a.urgente && b.urgente) {
-            return 1;
-        }
+      if (!a.urgente && b.urgente) {
+        return 1;
+      }
 
-        return a.horaChegada.localeCompare(b.horaChegada);
-    })
-  } 
+      return a.horaChegada.localeCompare(b.horaChegada);
+    });
+  };
 
   const filaOrdenada = handleOrdenarFilaDeAtendimento(filaDeAtendimento);
   return (
