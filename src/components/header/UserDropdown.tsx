@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
-import { Link } from "react-router";
+
 import { InfoCircle, LoginCurve, User } from "iconsax-react";
 import { useTheme } from "../../context/ThemeContext";
+import { useAuth } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+
   const { theme } = useTheme();
+  const { user, signOutUser } = useAuth();
+  const navigate  = useNavigate();
 
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -16,6 +21,16 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
+
+  const handleSignOut = async () => {
+    try {
+      await signOutUser()
+      navigate("/entrar")
+    } catch (error) {
+    console.log("Erro ao sair", error)
+    }
+  };
+
   return (
     <div className="relative">
       <button
@@ -57,7 +72,7 @@ export default function UserDropdown() {
             Manuel
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-            julho@gmail.com
+            {user ? user?.email : "julho@gmail.com"}
           </span>
         </div>
 
@@ -69,7 +84,11 @@ export default function UserDropdown() {
               to="/perfil"
               className="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
             >
-              <User variant="Bold" size={20} color={theme === "dark" ? "#fff" : "#102818"} />
+              <User
+                variant="Bold"
+                size={20}
+                color={theme === "dark" ? "#fff" : "#102818"}
+              />
               Editar perfil
             </DropdownItem>
           </li>
@@ -81,19 +100,23 @@ export default function UserDropdown() {
               to="/profile"
               className="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
             >
-              
-              <InfoCircle variant="Bold" size={20} color={theme === "dark" ? "#fff" : "#102818"}/>  
+              <InfoCircle
+                variant="Bold"
+                size={20}
+                color={theme === "dark" ? "#fff" : "#102818"}
+              />
               Suporte técnico
             </DropdownItem>
           </li>
         </ul>
-        <Link
-          to="/entrar"
-          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-        >
-         <LoginCurve variant="Bold" size={20} color={theme === "dark" ? "#fff" : "#102818"}/>
+        <button onClick={handleSignOut} className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+          <LoginCurve
+            variant="Bold"
+            size={20}
+            color={theme === "dark" ? "#fff" : "#102818"}
+          />
           Sair
-        </Link>
+        </button>
       </Dropdown>
     </div>
   );

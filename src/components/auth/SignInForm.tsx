@@ -1,14 +1,35 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { EyeSlash, Eye } from "iconsax-react";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-import Button from "../ui/button/Button";
+// import Button from "../ui/button/Button";
 import { useTheme } from "../../context/ThemeContext";
+import { useAuth } from "../../context/UserContext";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+    try {
+      await signIn(email, password);
+      setLoading(false);
+      navigate("/");
+    } catch (error) {
+      setLoading(false);
+      console.log("erro a fazer login", error);
+    }
+  };
 
   return (
     <div className="flex flex-col flex-1">
@@ -63,12 +84,17 @@ export default function SignInForm() {
               </div>
             </div>
             <form>
+              {error && <p className="text-error-500">{error}</p>}
               <div className="space-y-6">
                 <div>
                   <Label>
                     Email <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <Input placeholder="info@gmail.com" />
+                  <Input
+                    placeholder="info@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
                 <div>
                   <Label>
@@ -78,6 +104,8 @@ export default function SignInForm() {
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Palavra-passe"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
@@ -106,9 +134,14 @@ export default function SignInForm() {
                   </Link>
                 </div>
                 <div>
-                  <Button className="w-full" size="sm">
-                    Iniciar sessão
-                  </Button>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    onClick={handleSubmit}
+                    className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                  >
+                    {loading ? "Carregando..." : "Iniciar sessão"}
+                  </button>
                 </div>
               </div>
             </form>
