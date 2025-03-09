@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { EyeSlash, Eye } from "iconsax-react";
 import Label from "../form/Label";
@@ -14,7 +14,7 @@ export default function SignInForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
-  const { signIn } = useAuth();
+  const { signIn, userData } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,13 +23,18 @@ export default function SignInForm() {
     setLoading(true);
     try {
       await signIn(email, password);
-      setLoading(false);
-      navigate("/");
     } catch (error) {
       setLoading(false);
       console.log("erro a fazer login", error);
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      setLoading(false);
+      navigate("/");
+    }
+  }, [userData, navigate]);
 
   return (
     <div className="flex flex-col flex-1">

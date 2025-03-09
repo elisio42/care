@@ -9,6 +9,8 @@ import { useNavigate } from "react-router";
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -22,10 +24,11 @@ export default function SignUpForm() {
     setError(null);
     setLoading(true);
     try {
-      await signUp(email, password);
+      await signUp(email, password, firstName, lastName);
       setLoading(false);
       navigate("/");
     } catch (error) {
+      setLoading(false);
       console.log("erro ao criar conta", error);
     }
   };
@@ -106,6 +109,8 @@ export default function SignUpForm() {
                       id="fname"
                       name="fname"
                       placeholder="Seu nome"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
                   {/* <!-- Last Name --> */}
@@ -118,6 +123,8 @@ export default function SignUpForm() {
                       id="lname"
                       name="lname"
                       placeholder="Seu sobre nome"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>

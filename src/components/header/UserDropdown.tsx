@@ -11,8 +11,8 @@ export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { theme } = useTheme();
-  const { user, signOutUser } = useAuth();
-  const navigate  = useNavigate();
+  const { user, userData, signOutUser } = useAuth();
+  const navigate = useNavigate();
 
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -24,10 +24,10 @@ export default function UserDropdown() {
 
   const handleSignOut = async () => {
     try {
-      await signOutUser()
-      navigate("/entrar")
+      await signOutUser();
+      navigate("/entrar");
     } catch (error) {
-    console.log("Erro ao sair", error)
+      console.log("Erro ao sair", error);
     }
   };
 
@@ -41,7 +41,9 @@ export default function UserDropdown() {
           <img src="/images/user/owner.jpg" alt="User" />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">Mendes</span>
+        <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
+          {userData ? `${userData.firstName} ` : "user"}
+        </span>
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
@@ -69,7 +71,7 @@ export default function UserDropdown() {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            Manuel
+            {userData ? `${userData.firstName} ${userData.lastName}` : "user"}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
             {user ? user?.email : "julho@gmail.com"}
@@ -109,7 +111,10 @@ export default function UserDropdown() {
             </DropdownItem>
           </li>
         </ul>
-        <button onClick={handleSignOut} className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+        <button
+          onClick={handleSignOut}
+          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+        >
           <LoginCurve
             variant="Bold"
             size={20}
