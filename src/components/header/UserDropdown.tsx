@@ -38,12 +38,10 @@ export default function UserDropdown() {
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
         <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-          <img src="/images/user/owner.jpg" alt="User" />
+          {userData ? <img src={userData.photoURL} /> : "user"}
         </span>
 
-        <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-          {userData ? `${userData.firstName} ` : "user"}
-        </span>
+       
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
