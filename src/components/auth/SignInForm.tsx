@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { EyeSlash, Eye } from "iconsax-react";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-// import Button from "../ui/button/Button";
+
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/UserContext";
 
@@ -23,9 +23,18 @@ export default function SignInForm() {
     setLoading(true);
     try {
       await signIn(email, password);
-    } catch (error) {
+    } catch (error: any) {
+      if (error.code === "auth/invalid-credential") {
+        setError("E-mail ou senha incorretos. Tente novamente.");
+      } else if (error.code === "auth/user-disabled") {
+        setError("Esta conta foi desativada. Contate o suporte.");
+      } else if (error.code === "auth/too-many-requests") {
+        setError("Muitas tentativas de login. Aguarde um momento.");
+      } else {
+        setError("Ocorreu um erro inesperado. Tente novamente.");
+      }
+    } finally {
       setLoading(false);
-      console.log("erro a fazer login", error);
     }
   };
 
@@ -89,7 +98,7 @@ export default function SignInForm() {
               </div>
             </div>
             <form>
-              {error && <p className="text-error-500">{error}</p>}
+              {error && <p className="text-error-500 mb-2">{error}</p>}
               <div className="space-y-6">
                 <div>
                   <Label>
