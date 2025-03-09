@@ -3,9 +3,17 @@ import { Link, useNavigate } from "react-router";
 import { EyeSlash, Eye } from "iconsax-react";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/UserContext";
+import { z } from "zod";
+
+const signInSchema = z.object({
+  email: z
+    .string()
+    .min(1, "Email é obrigatório")
+    .email("Por favor, insira um e-mail válido."),
+  password: z.string().min(1, "Senha é obrigatória"),
+});
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,22 +22,27 @@ export default function SignInForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
-  const { signIn, userData } = useAuth();
+  const { signIn, userData, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
+    const resulted = signInSchema.safeParse({ email, password });
+
+    if (!resulted.success) {
+      setError(resulted.error.errors[0].message);
+      setLoading(false);
+      return;
+    }
+
     try {
       await signIn(email, password);
     } catch (error: any) {
       if (error.code === "auth/invalid-credential") {
         setError("E-mail ou senha incorretos. Tente novamente.");
-      } else if (error.code === "auth/user-disabled") {
-        setError("Esta conta foi desativada. Contate o suporte.");
-      } else if (error.code === "auth/too-many-requests") {
-        setError("Muitas tentativas de login. Aguarde um momento.");
       } else {
         setError("Ocorreu um erro inesperado. Tente novamente.");
       }
@@ -38,6 +51,18 @@ export default function SignInForm() {
     }
   };
 
+  const handlePopUp = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      await signInWithGoogle();
+    } catch (error: any) {
+      setError(error.message || "Erro ao fazer login com o Google.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   useEffect(() => {
     if (userData) {
       setLoading(false);
@@ -59,7 +84,10 @@ export default function SignInForm() {
           </div>
           <div>
             <div className="grid grid-cols-1 gap-3 sm:gap-5">
-              <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
+              <button
+                onClick={handlePopUp}
+                className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
+              >
                 <svg
                   width="20"
                   height="20"

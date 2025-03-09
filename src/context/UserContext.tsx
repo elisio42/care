@@ -5,8 +5,10 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  signInWithPopup,
+  deleteUser,
 } from "firebase/auth";
-import { auth, db } from "../firebase";
+import { auth, db, provider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 type AuthContextType = {
@@ -20,6 +22,7 @@ type AuthContextType = {
   signIn: (email: string, password: string) => Promise<void>;
   signOutUser: () => Promise<void>;
   userData: any | null;
+  signInWithGoogle: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -50,6 +53,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     return () => unsubscribe();
   }, []);
+
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+  
+      if (!docSnap.exists()) {
+        
+        await deleteUser(user);
+        throw new Error(
+          "Este email não está registrado. Por favor, crie uma conta."
+        );
+      }
+  
+      // Usuário existe no Firestore, atualiza os dados se necessário
+      await setDoc(
+        docRef,
+        {
+          photoURL: user.photoURL,
+        },
+        { merge: true }
+      );
+    } catch (error) {
+      console.error("Erro ao fazer login com o Google:", error);
+      throw error;
+    }
+  };
 
   const signUp = async (
     email: string,
@@ -84,7 +116,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     await signOut(auth);
   };
   return (
-    <AuthContext.Provider value={{ user, userData, signIn, signOutUser, signUp }}>
+    <AuthContext.Provider
+      value={{ signInWithGoogle, user, userData, signIn, signOutUser, signUp }}
+    >
       {children}
     </AuthContext.Provider>
   );
