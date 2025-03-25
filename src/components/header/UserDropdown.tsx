@@ -35,15 +35,23 @@ export default function UserDropdown() {
     <div className="relative">
       <button
         onClick={toggleDropdown}
-        className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
+        className="flex items-center text-gray-300 dropdown-toggle dark:text-gray-700"
       >
-        <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-          {userData ? <img src={userData.photoURL} /> : "user"}
+        <span className="mr-3 toverflow-hidden  text-gray-500 transition-colors bg-white border border-gray-200 rounded-full dropdown-toggle hover:text-gray-700 h-11 w-11 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white  flex items-center justify-center   text-lg font-semibold uppercase">
+          {userData && userData.photoURL ? (
+            <img
+              src={userData.photoURL}
+              alt="User Profile"
+              className="w-full h-full object-cover"
+            />
+          ) : userData && userData.email ? (
+            <span className="text-gray-700  dark:text-gray-400 ">{userData.firstName.charAt(0).toUpperCase()}</span>
+          ) : (
+            <span>?</span>
+          )}
         </span>
-
-       
         <svg
-          className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
+          className={`stroke-gray-700 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
           width="18"
@@ -111,7 +119,7 @@ export default function UserDropdown() {
         </ul>
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 dark:bg-gray-500 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
         >
           <LoginCurve
             variant="Bold"

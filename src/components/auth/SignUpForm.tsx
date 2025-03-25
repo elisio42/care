@@ -7,6 +7,7 @@ import Input from "../form/input/InputField";
 import { useAuth } from "../../context/UserContext";
 import { useNavigate } from "react-router";
 import { z } from "zod";
+import Select from "../form/Select";
 
 const signUpSchema = z.object({
   firstName: z.string().min(1, "O nome é obrigatório"),
@@ -22,17 +23,30 @@ const signUpSchema = z.object({
     .max(14, { message: "A senha não pode ter mais de 14 caracteres" }),
 });
 
+type RoleType = "admin" | "recepcionista" | "doutor";
+
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState<RoleType>("doutor");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
   const { signUp, userData } = useAuth();
   const navigate = useNavigate();
+
+  const options = [
+    { value: "admin", label: "admin" },
+    { value: "doutor", label: "doutor" },
+    { value: "recepcionista", label: "recepcionista" },
+  ];
+
+  const handleSelectChange = (value: string) => {
+    setRole(value as RoleType);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +67,7 @@ export default function SignUpForm() {
     }
 
     try {
-      await signUp(email, password, firstName, lastName);
+      await signUp(email, password, firstName, lastName, role);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -136,6 +150,19 @@ export default function SignUpForm() {
                     placeholder="Seu email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+
+                {/* <!-- Role --> */}
+                <div>
+                  <Label>
+                  Tipo de usuário<span className="text-error-500">*</span>
+                  </Label>
+                  <Select
+                    options={options}
+                    placeholder="Selecionar"
+                    onChange={handleSelectChange}
+                    className="dark:bg-dark-900"
                   />
                 </div>
                 {/* <!-- Password --> */}

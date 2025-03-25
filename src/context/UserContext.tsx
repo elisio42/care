@@ -11,13 +11,16 @@ import {
 import { auth, db, provider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
+type RoleType = "admin" | "recepcionista" | "doutor";
+
 type AuthContextType = {
   user: User | null;
   signUp: (
     email: string,
     password: string,
     fname: string,
-    lname: string
+    lname: string,
+    role:  RoleType 
   ) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signOutUser: () => Promise<void>;
@@ -87,7 +90,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     email: string,
     password: string,
     fname: string,
-    lname: string
+    lname: string,
+    role: string,
   ) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -101,6 +105,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         firstName: fname,
         lastName: lname,
         email: email,
+        role: role
       });
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
